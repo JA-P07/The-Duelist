@@ -1,0 +1,166 @@
+using System.Diagnostics.Tracing;
+using UnityEngine;
+using System.Collections;
+
+
+public enum ActionType { None, Thrust, SlashLeft, SlashRight, Feint, Brace}
+public enum GameState { WaitingForActions, ResolvingActions, ReactMode, GameOver }
+
+public class GameController : MonoBehaviour
+{
+    [SerializeField] private PlayerController player1;
+    [SerializeField] private PlayerController player2;
+    [SerializeField] private ReactmodeController reactController;
+
+    private ActionType player1Action = ActionType.None;
+    private ActionType player2Action = ActionType.None;
+    private GameState currentState = GameState.WaitingForActions;
+
+    private bool player1ActionChosen = false;
+    private bool player2ActionChosen = false;
+
+    void Start()
+    {
+        StartTurn();
+    }
+
+    void StartTurn()
+    {
+        player1.ResetForNewTurn();
+        player2.ResetForNewTurn();
+
+        currentState = GameState.WaitingForActions;
+        Debug.Log("New turn started. Waiting for actions...");
+
+        player1Action = ActionType.None;
+        player2Action = ActionType.None;
+
+        player1ActionChosen = false;
+        player2ActionChosen = false;
+
+        // Tell players to choose their actions
+    }
+
+    // Called by player scripts when they pick an action
+    public void SubmitAction(PlayerController player, ActionType action)
+    {
+        if (currentState != GameState.WaitingForActions) return;
+        if (player == player1)
+        {
+            player1Action = action;
+            player1ActionChosen = true;
+            Debug.Log("Player1 chose: " + action);
+        }
+        else if (player == player2)
+        {
+            player2Action = action;
+            player2ActionChosen = true;
+            Debug.Log("Player2 chose: " + action);
+        }
+
+        if (player1ActionChosen && player2ActionChosen)
+        {
+            currentState = GameState.ResolvingActions;
+            ReactModeCheck();
+        }
+    }
+
+    void ReactModeCheck()
+    {
+        // Determine who is attacking faster
+        if (player1.isAttack && (!player2.isAttack || player1.attackSpeed > player2.attackSpeed))
+        {
+            EnterReactMode(player2, player1);
+        }
+        else if (player2.isAttack && (!player1.isAttack || player2.attackSpeed > player1.attackSpeed))
+        {
+            EnterReactMode(player1, player2);
+        }
+        else
+        {
+            ResolveActions();
+        }
+    }
+
+    void EnterReactMode(PlayerController reactingPlayer, PlayerController attackingPlayer)
+    {
+        currentState = GameState.ReactMode;
+        Debug.Log($"{reactingPlayer.name} enters React Mode against {attackingPlayer.name}!");
+
+        reactController.StartReactMode(reactingPlayer, 1.0f);
+        reactController.OnReactComplete += (success, perfect, player) =>
+            HandleReactComplete(success, perfect, reactingPlayer, attackingPlayer);
+    }
+
+    void HandleReactComplete(bool success, bool perfect, PlayerController reactingPlayer, PlayerController attackingPlayer)
+    {
+        if (success)
+        {
+            Debug.Log(perfect ? "Perfect reaction!" : "Good reaction!");
+
+            PostReaction(success, perfect, reactingPlayer, attackingPlayer);
+        }
+        else
+        {
+            Debug.Log($"{reactingPlayer.name} failed to react — full damage!");
+            reactingPlayer.reacting = false;
+            ResolveActions();
+        }
+    }
+
+    void PostReaction(bool success, bool perfect, PlayerController reactingPlayer, PlayerController attackingPlayer)
+    {
+        if (perfect)
+        {
+            Debug.Log(reactingPlayer + " makes a counterattack");
+            attackingPlayer.damage = 0;
+            reactingPlayer.damage = 30;
+            ResolveActions();
+        }
+
+        else if (success && !perfect)
+        {
+            Debug.Log(reactingPlayer + " blocks, damage prevented");
+            attackingPlayer.damage = 0;
+            reactingPlayer.damage = 0;
+            ResolveActions();
+        }
+    }
+
+    void ResolveActions()
+    {
+        Debug.Log("Resolving actions...");
+        Debug.Log("Player1 action: " + player1Action);
+        Debug.Log("Player2 action: " + player2Action);
+
+        // Calculate damage dealt from each player to the other
+        float damageFromP1 = player1.damage * player1.DamageDealt;
+        float damageFromP2 = player2.damage * player2.DamageDealt;
+
+        // Apply damage considering defender's DamageTaken multiplier
+        float effectiveDamageToP2 = damageFromP1 * player2.DamageTaken;
+        float effectiveDamageToP1 = damageFromP2 * player1.DamageTaken;
+
+        player2.HP -= effectiveDamageToP2;
+        player1.HP -= effectiveDamageToP1;
+
+        Debug.Log($"Player1 deals {effectiveDamageToP2} damage to Player2. Player2 HP: {player2.HP}");
+        Debug.Log($"Player2 deals {effectiveDamageToP1} damage to Player1. Player1 HP: {player1.HP}");
+
+        // Optional: Check for defeat
+        if (player1.HP <= 0)
+        {
+            Debug.Log("Player 1 has been defeated!");
+            // Add game over logic here
+        }
+
+        if (player2.HP <= 0)
+        {
+            Debug.Log("Player 2 has been defeated!");
+            // Add game over logic here
+        }
+
+        // Start next turn after delay
+        Invoke(nameof(StartTurn), 2f);
+    }
+}
