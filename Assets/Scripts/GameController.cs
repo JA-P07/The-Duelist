@@ -1,6 +1,7 @@
+using System;
+using System.Collections;
 using System.Diagnostics.Tracing;
 using UnityEngine;
-using System.Collections;
 
 
 public enum ActionType { None, Thrust, SlashLeft, SlashRight, Feint, Brace}
@@ -10,7 +11,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private PlayerController player1;
     [SerializeField] private PlayerController player2;
-    [SerializeField] private ReactmodeController reactController;
+    [SerializeField] private SimpleReactController reactController;
 
     private ActionType player1Action = ActionType.None;
     private ActionType player2Action = ActionType.None;
@@ -85,12 +86,32 @@ public class GameController : MonoBehaviour
     void EnterReactMode(PlayerController reactingPlayer, PlayerController attackingPlayer)
     {
         currentState = GameState.ReactMode;
+
         Debug.Log($"{reactingPlayer.name} enters React Mode against {attackingPlayer.name}!");
 
-        reactController.StartReactMode(reactingPlayer, 1.0f);
-        reactController.OnReactComplete += (success, perfect, player) =>
+        // Clear any leftover subscriptions
+        reactController.onComplete = null;
+
+        // Subscribe once
+        reactController.onComplete = (success, perfect) =>
+        {
             HandleReactComplete(success, perfect, reactingPlayer, attackingPlayer);
+        };
+
+        if (attackingPlayer.name == "player1")
+        {
+            // Spawn QTE above player2
+            reactController.StartQTE(1f, 2, reactingPlayer.transform);
+        }
+        else if (attackingPlayer.name == "player2")
+        {
+            // Spawn QTE above player1
+            reactController.StartQTE(1f, 1, reactingPlayer.transform);
+        }
     }
+
+
+
 
     void HandleReactComplete(bool success, bool perfect, PlayerController reactingPlayer, PlayerController attackingPlayer)
     {

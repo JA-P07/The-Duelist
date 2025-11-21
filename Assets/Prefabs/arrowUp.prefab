@@ -42,14 +42,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2227449148387883653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af6d64adccf427449e9d20bf82c14fc, type: 3}
+  m_Script: {fileID: 11500000, guid: dd2c1ae81ace6944da3cf8912d3322fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  hasBeenHit: 0
-  isActive: 1
-  targetTime: 0
-  travelTime: 2
+  directionIndex: 0
+  scheduledHitTime: 0
+  result: 0
 --- !u!212 &8395705971119248244
 SpriteRenderer:
   m_ObjectHideFlags: 0
