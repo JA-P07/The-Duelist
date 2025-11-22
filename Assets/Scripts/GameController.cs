@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Diagnostics.Tracing;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public enum ActionType { None, Thrust, SlashLeft, SlashRight, Feint, Brace}
@@ -12,6 +14,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerController player1;
     [SerializeField] private PlayerController player2;
     [SerializeField] private SimpleReactController reactController;
+    public GameSettings settings;
+    public int currentRound;
+    public int totalRounds;
+    private int player1Score = 0;
+    private int player2Score = 0;
+
+    public TextMeshPro roundText;
+    public TextMeshPro P1Name;
+    public TextMeshPro P2Name;
 
     private ActionType player1Action = ActionType.None;
     private ActionType player2Action = ActionType.None;
@@ -22,6 +33,13 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        currentRound = 1;
+        player1.HP = settings.startingHP;
+        player2.HP = settings.startingHP;
+        P1Name.text = settings.p1Name;
+        P2Name.text = settings.p2Name;
+        totalRounds = settings.totalRounds;
+        roundText.text = currentRound + " of " + totalRounds;
         StartTurn();
     }
 
@@ -168,20 +186,62 @@ public class GameController : MonoBehaviour
         Debug.Log($"Player1 deals {effectiveDamageToP2} damage to Player2. Player2 HP: {player2.HP}");
         Debug.Log($"Player2 deals {effectiveDamageToP1} damage to Player1. Player1 HP: {player1.HP}");
 
-        // Optional: Check for defeat
-        if (player1.HP <= 0)
+        bool p1Hit = effectiveDamageToP2 > 0;
+        bool p2Hit = effectiveDamageToP1 > 0;
+
+        if (p1Hit || p2Hit)
+        {
+            EndRound(p1Hit, p2Hit);
+            return;
+        }
+        else
+        {
+            StartTurn();
+        }
+    }
+
+    void EndRound(bool p1Hit, bool p2Hit)
+    {
+
+        if (p1Hit && !p2Hit) player1Score++;
+        if (p2Hit && !p1Hit) player2Score++;
+        if (p1Hit && p2Hit)
+        {
+            // Double hit — up to you how to score it
+        }
+
+        Debug.Log($"Round {currentRound} over!");
+        Debug.Log($"Score: P1 {player1Score} - {player2Score} P2");
+
+        if (currentRound >= totalRounds)
+        {
+            EndMatch();
+        }
+        else if (player1.HP <= 0)
         {
             Debug.Log("Player 1 has been defeated!");
-            // Add game over logic here
+            EndMatch();
         }
-
-        if (player2.HP <= 0)
+        else if (player2.HP <= 0)
         {
             Debug.Log("Player 2 has been defeated!");
-            // Add game over logic here
+            EndMatch();
         }
-
-        // Start next turn after delay
-        Invoke(nameof(StartTurn), 2f);
+        else
+        {
+            Invoke(nameof(StartNextRound), 2f);
+        }
     }
+    void StartNextRound()
+    {
+        currentRound++;
+        roundText.text = currentRound + " of " + totalRounds;
+        StartTurn();
+    }
+
+    void EndMatch()
+    {
+        Debug.Log("Game ended! More logic will be added soon!");
+    }
+
 }

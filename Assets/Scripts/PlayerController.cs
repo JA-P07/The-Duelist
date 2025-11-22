@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         if (TP < cost)
         {
-            //can't perform action
+            Debug.Log("Can't perform action");
         }
         else
         {
@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
             TPCheck(0);
             offensive = true;
             defensive = false;
+            isAttack = false;
             gameController.SubmitAction(this, ActionType.None);
         }
     }
@@ -204,6 +205,7 @@ public class PlayerController : MonoBehaviour
             TPCheck(0);
             defensive = true;
             offensive = false;
+            isAttack=false;
             gameController.SubmitAction(this, ActionType.None);
         }
     }
