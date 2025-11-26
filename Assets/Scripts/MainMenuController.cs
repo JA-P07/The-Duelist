@@ -30,6 +30,16 @@ public class MainMenuController : MonoBehaviour
     [Header("Settings SO")]
     public GameSettings settings;
 
+    void Update()
+    {
+        UpdatePlayernames();   
+    }
+
+    void UpdatePlayernames()
+    {
+        settings.p1Name = p1NameInput.text;
+        settings.p2Name = p2NameInput.text;
+    }
     public void PlayClicked()
     {
         mainMenuPanel.SetActive(false);
@@ -65,7 +75,6 @@ public class MainMenuController : MonoBehaviour
     void UpdateModeText() { modeText.text = modes[modeIndex]; }
     void UpdateMapText() { mapText.text = maps[mapIndex]; }
 
-    // 🔥 NEW: Toggles the correct panel for the current mode
     void UpdateModePanels()
     {
         if (modes[modeIndex] == "PvP")

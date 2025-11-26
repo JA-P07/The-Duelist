@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
     public TextMeshPro roundText;
     public TextMeshPro P1Name;
     public TextMeshPro P2Name;
+    public GameObject infoPanel;
+    public GameObject PausePanel;
 
     private ActionType player1Action = ActionType.None;
     private ActionType player2Action = ActionType.None;
@@ -30,6 +32,9 @@ public class GameController : MonoBehaviour
 
     private bool player1ActionChosen = false;
     private bool player2ActionChosen = false;
+
+    private bool info;
+    private bool pause;
 
     void Start()
     {
@@ -42,6 +47,41 @@ public class GameController : MonoBehaviour
         roundText.text = currentRound + " of " + totalRounds;
         StartTurn();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("i"))
+        {
+            if (info)
+            {
+                infoPanel.SetActive(false);
+                info = false;
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                info = true;
+                infoPanel.SetActive(true);
+            }
+        }
+        if (Input.GetKeyDown("escape"))
+        {
+            if (pause)
+            {
+                PausePanel.SetActive(false);
+                pause = false;
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                pause = true;
+                PausePanel.SetActive(true);
+            }
+        }
+    }
+
 
     void StartTurn()
     {
