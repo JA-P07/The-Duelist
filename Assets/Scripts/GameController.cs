@@ -33,8 +33,8 @@ public class GameController : MonoBehaviour
     private bool player1ActionChosen = false;
     private bool player2ActionChosen = false;
 
-    private bool info;
-    private bool pause;
+    private bool info = false;
+    private bool pause = false;
 
     void Start()
     {
@@ -52,33 +52,43 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown("i"))
         {
-            if (info)
-            {
-                infoPanel.SetActive(false);
-                info = false;
-                Time.timeScale = 1;
-            }
-            else
-            {
-                Time.timeScale = 0;
-                info = true;
-                infoPanel.SetActive(true);
-            }
+            Info();
         }
         if (Input.GetKeyDown("escape"))
         {
-            if (pause)
-            {
-                PausePanel.SetActive(false);
-                pause = false;
-                Time.timeScale = 1;
-            }
-            else
-            {
-                Time.timeScale = 0;
-                pause = true;
-                PausePanel.SetActive(true);
-            }
+            Pause();
+        }
+    }
+
+    public void Pause()
+    {
+        if (pause)
+        {
+            PausePanel.SetActive(false);
+            pause = false;
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+            pause = true;
+            PausePanel.SetActive(true);
+        }
+    }
+
+    public void Info()
+    {
+        if (info)
+        {
+            infoPanel.SetActive(false);
+            info = false;
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+            info = true;
+            infoPanel.SetActive(true);
         }
     }
 

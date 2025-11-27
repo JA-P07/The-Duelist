@@ -21,24 +21,30 @@ public class MainMenuController : MonoBehaviour
     [Header("Mode / Map")]
     public TMP_Text modeText;
     public TMP_Text mapText;
+    public TMP_Text roundText;
+    public GameObject error;
     private int modeIndex = 0;
     private int mapIndex = 0;
+    private int roundIndex = 0;
+    private bool ready = false;
 
     private string[] modes = { "PvP", "PvAI" };
     private string[] maps = { "Void", "Bar" };
+    private int[] rounds = { 3, 5, 7, 9 };
 
     [Header("Settings SO")]
     public GameSettings settings;
 
     void Update()
     {
-        UpdatePlayernames();   
+        UpdateSettings();   
     }
 
-    void UpdatePlayernames()
+    void UpdateSettings()
     {
         settings.p1Name = p1NameInput.text;
         settings.p2Name = p2NameInput.text;
+        settings.totalRounds = rounds[roundIndex];
     }
     public void PlayClicked()
     {
@@ -52,6 +58,7 @@ public class MainMenuController : MonoBehaviour
     public void BackClicked()
     {
         settingsPanel.SetActive(false);
+        error.SetActive(false);
         mainMenuPanel.SetActive(true);
     }
 
@@ -72,8 +79,13 @@ public class MainMenuController : MonoBehaviour
     public void MapLeft() { mapIndex = (mapIndex - 1 + maps.Length) % maps.Length; UpdateMapText(); }
     public void MapRight() { mapIndex = (mapIndex + 1) % maps.Length; UpdateMapText(); }
 
+    public void RoundLeft() { roundIndex = (roundIndex - 1 + rounds.Length) % rounds.Length; UpdateRoundText(); }
+    public void RoundRight() { roundIndex = (roundIndex + 1) % rounds.Length; UpdateRoundText(); }
+
     void UpdateModeText() { modeText.text = modes[modeIndex]; }
     void UpdateMapText() { mapText.text = maps[mapIndex]; }
+
+    void UpdateRoundText() { roundText.text = rounds[roundIndex].ToString(); }
 
     void UpdateModePanels()
     {
@@ -88,11 +100,29 @@ public class MainMenuController : MonoBehaviour
             pvaiPanel.SetActive(true);
         }
     }
+    void nameCheck()
+    {
+        if(p1NameInput.text == "" || p2NameInput.text == "" )
+        {
+            Debug.Log("Please give a name to each player.");
+            error.SetActive(true);
+            ready = false;
+        }
+        else
+        {
+            Debug.Log("Good to go!");
+            ready = true;
+        }
+    }
 
     public void StartPVP()
     {
-        SceneManager.LoadScene("pvpScene");
-        Debug.Log("Scene loaded, GameController Start() executed!");
+        nameCheck();
+        if (ready) 
+        {
+            SceneManager.LoadScene("pvpScene");
+            Debug.Log("Scene loaded, GameController Start() executed!");
+        }
     }
     public void QuitGame()
     {
