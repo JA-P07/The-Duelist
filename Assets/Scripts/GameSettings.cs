@@ -7,6 +7,7 @@ public class GameSettings : ScriptableObject
     public float startingHP = 50f;
     public string p1Name = "Player 1";
     public string p2Name = "Player 2";
+    public string WinningPlayerName;
 
     public string selectedMap = "Void";
 }

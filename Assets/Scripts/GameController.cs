@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
     public TextMeshPro P2Name;
     public GameObject infoPanel;
     public GameObject PausePanel;
+    public GameObject EndPanel;
 
     private ActionType player1Action = ActionType.None;
     private ActionType player2Action = ActionType.None;
@@ -38,13 +39,54 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        startGame();
+    }
+
+    public void startGame()
+    {
+        EndPanel.SetActive(false);
+        // Reset Time Scale in case game was paused or info was open
+        Time.timeScale = 1f;
+        pause = false;
+        info = false;
+        PausePanel.SetActive(false);
+        infoPanel.SetActive(false);
+
+        // Reset internal game state
+        currentState = GameState.WaitingForActions;
+
+        // Clear QTE subscriptions
+        if (reactController != null)
+            reactController.onComplete = null;
+
+        // Cancel all pending invokes (like StartNextRound)
+        CancelInvoke();
+
+        // Reset match data
+        settings.WinningPlayerName = "";
+        player1Score = 0;
+        player2Score = 0;
+
+        // Reset players
         currentRound = 1;
         player1.HP = settings.startingHP;
         player2.HP = settings.startingHP;
+        player1.ResetForNewTurn();
+        player2.ResetForNewTurn();
+
+        // Reset UI
         P1Name.text = settings.p1Name;
         P2Name.text = settings.p2Name;
         totalRounds = settings.totalRounds;
         roundText.text = currentRound + " of " + totalRounds;
+
+        // Reset action flags
+        player1Action = ActionType.None;
+        player2Action = ActionType.None;
+        player1ActionChosen = false;
+        player2ActionChosen = false;
+
+        // Ready to go
         StartTurn();
     }
 
@@ -265,17 +307,17 @@ public class GameController : MonoBehaviour
 
         if (currentRound >= totalRounds)
         {
-            EndMatch();
+            EndMatch(false, 0);
         }
         else if (player1.HP <= 0)
         {
             Debug.Log("Player 1 has been defeated!");
-            EndMatch();
+            EndMatch(true, 1);
         }
         else if (player2.HP <= 0)
         {
             Debug.Log("Player 2 has been defeated!");
-            EndMatch();
+            EndMatch(true, 2);
         }
         else
         {
@@ -289,9 +331,31 @@ public class GameController : MonoBehaviour
         StartTurn();
     }
 
-    void EndMatch()
+    void EndMatch(bool playerDied, int Dead)
     {
-        Debug.Log("Game ended! More logic will be added soon!");
+        if (playerDied)
+        {
+            if (playerDied && Dead == 1) //P1 dies
+            {
+                settings.WinningPlayerName = settings.p1Name;
+            }
+            else if (playerDied && Dead == 2) //P2 dies
+            {
+                settings.WinningPlayerName = settings.p2Name;
+            }
+        }
+        else if (!playerDied || Dead == 0) 
+        {
+            if (player1Score > player2Score) //P1 wins via points
+            {
+                settings.WinningPlayerName = settings.p1Name;
+            }
+            else if (player2Score > player1Score) //P2 wins via points
+            {
+                settings.WinningPlayerName = settings.p2Name;
+            }
+        }
+        EndPanel.SetActive(true);
     }
 
 }
