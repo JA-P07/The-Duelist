@@ -28,8 +28,8 @@ public class MainMenuController : MonoBehaviour
     private int roundIndex = 0;
     private bool ready = false;
 
-    private string[] modes = { "PvP", "PvAI" };
-    private string[] maps = { "Void", "Bar" };
+    private string[] modes = { "PvP"};
+    private string[] maps = { "Void" };
     private int[] rounds = { 3, 5, 7, 9 };
 
     [Header("Settings SO")]

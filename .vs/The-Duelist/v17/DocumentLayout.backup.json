@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\assets\\scripts\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|c:\\users\\juliu\\onedrive\\documents\\git\\the-duelist\\assets\\scripts\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|c:\\users\\juliu\\onedrive\\documents\\git\\the-duelist\\assets\\scripts\\mainmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\assets\\scripts\\gamesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|c:\\users\\juliu\\onedrive\\documents\\git\\the-duelist\\assets\\scripts\\endcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\endcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\assets\\scripts\\mainmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|c:\\users\\juliu\\onedrive\\documents\\git\\the-duelist\\assets\\scripts\\pausecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\pausecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\assets\\scripts\\gamesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{733C476D-2C45-1365-0B69-9EE36E96586C}|Assembly-CSharp.csproj|C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\assets\\scripts\\simplereactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,36 +42,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "PauseController.cs",
+              "DocumentMoniker": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\PauseController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PauseController.cs",
+              "ToolTip": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\PauseController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PauseController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T10:01:20.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EndController.cs",
+              "DocumentMoniker": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\EndController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\EndController.cs",
+              "ToolTip": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\EndController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\EndController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T10:01:10.91Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "MainMenuController.cs",
               "DocumentMoniker": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\MainMenuController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenuController.cs",
               "ToolTip": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\MainMenuController.cs",
               "RelativeToolTip": "Assets\\Scripts\\MainMenuController.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAYwFQAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACMAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-22T15:16:16.136Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "GameSettings.cs",
               "DocumentMoniker": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\GameSettings.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameSettings.cs",
               "ToolTip": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\GameSettings.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameSettings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T11:30:29.572Z"
+              "WhenOpened": "2025-11-22T11:30:29.572Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "SimpleReactController.cs",
               "DocumentMoniker": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\SimpleReactController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SimpleReactController.cs",
@@ -75,7 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Note.cs",
               "DocumentMoniker": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\Note.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Note.cs",
@@ -87,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
@@ -95,7 +130,8 @@
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
               "ViewState": "AgIAAF0AAAAAAAAAAADwv24AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T10:51:28.04Z"
+              "WhenOpened": "2025-11-21T10:51:28.04Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -105,7 +141,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameController.cs",
               "ToolTip": "C:\\Users\\juliu\\OneDrive\\Documents\\GIT\\The-Duelist\\Assets\\Scripts\\GameController.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameController.cs",
-              "ViewState": "AgIAAB0BAAAAAAAAAAAqwDUBAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAEkBAAAAAAAAAAAAAGUBAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T10:51:16.279Z",
               "EditorCaption": ""

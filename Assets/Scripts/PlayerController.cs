@@ -49,13 +49,11 @@ public class PlayerController : MonoBehaviour
         {
             defensive = true;
             offensive = false;
-            Sprite.material.color = Color.blue;
         }
         else
         {
             offensive = true;
             defensive = false;
-            Sprite.material.color = Color.red;
         }
     }
     public void checkGuard()
@@ -66,7 +64,6 @@ public class PlayerController : MonoBehaviour
             DamageDealt = 1.0f;
             DamageTaken = 1.5f;
             bonus = 1;
-            Sprite.material.color = Color.red;
         }
         else if (defensive == true)
         {
@@ -74,7 +71,6 @@ public class PlayerController : MonoBehaviour
             DamageDealt = 0.5f;
             DamageTaken = 0.5f;
             bonus = 2;
-            Sprite.material.color = Color.blue;
         }
     }
     public void ResetForNewTurn()
