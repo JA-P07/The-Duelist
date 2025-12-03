@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     public int bonus;
     public int cost;
     private SpriteRenderer Sprite;
+    private Animator animator;
+    public string HitText;
+
 
 
     // Combos defined by indexes into relevantKeys
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         Sprite = GetComponent<SpriteRenderer>();
         TP = 10;
         momentum = 1.0f;
@@ -64,6 +68,7 @@ public class PlayerController : MonoBehaviour
             DamageDealt = 1.0f;
             DamageTaken = 1.5f;
             bonus = 1;
+            animator.SetInteger("GuardState", 0);
         }
         else if (defensive == true)
         {
@@ -71,15 +76,26 @@ public class PlayerController : MonoBehaviour
             DamageDealt = 0.5f;
             DamageTaken = 0.5f;
             bonus = 2;
+            animator.SetInteger("GuardState", 1);
         }
     }
+    public void takeHit()
+    {
+        Debug.Log(name + " taking hit, guard: " + (offensive ? "Offensive" : "Defensive"));
+        if (offensive)
+            animator.SetTrigger("Hit_Offensive");
+        else
+            animator.SetTrigger("Hit_Defensive");
+    }
+
+
     public void ResetForNewTurn()
     {
         reacting = false;
         isAttack = false;
         direction = "any";
         damage = 0;
-    TP = TP + bonus;
+        TP = TP + bonus;
     }
 
     public void StartCounterMode()

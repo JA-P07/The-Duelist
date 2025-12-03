@@ -295,8 +295,17 @@ public class GameController : MonoBehaviour
     void EndRound(bool p1Hit, bool p2Hit)
     {
 
-        if (p1Hit && !p2Hit) player1Score++;
-        if (p2Hit && !p1Hit) player2Score++;
+        if (p1Hit && !p2Hit)
+        {
+            player1Score++;
+            player2.takeHit(); // only runs if P1 hit and P2 didn’t
+        }
+
+        if (p2Hit && !p1Hit)
+        {
+            player2Score++;
+            player1.takeHit(); // only runs if P2 hit and P1 didn’t
+        }
         if (p1Hit && p2Hit)
         {
             // Double hit — up to you how to score it
