@@ -3,6 +3,7 @@ using System.Collections;
 using System.Xml.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,26 +14,27 @@ public class PlayerController : MonoBehaviour
     private List<KeyCode> inputBuffer = new List<KeyCode>();
     private float comboMaxTime = 0.5f;
     private float lastInputTime = 0f;
-    public float HP = 200;
+    public float HP;
     public float attackSpeed;
     public bool isAttack;
-    public float momentum;
+    public float momentum; // not ready yet I think
     public float damage;
     public int TP;
     private bool defensive;
     private bool offensive;
     public float DamageDealt;
     public float DamageTaken;
-    public int StartingGuard;
+    public int StartingGuard; //choosing guards
     [HideInInspector] public bool reacting = false;
     [HideInInspector] public bool counterMode = false;
     [HideInInspector] public bool counterActionChosen = false;
-    public string direction;
-    public int bonus;
-    public int cost;
+    private bool chosen;
+    public bool ready; //choosing guards
+    public int bonus; //TP
+    public int cost; //TP
+    public TextMeshPro ActionText;
     private SpriteRenderer Sprite;
     private Animator animator;
-    public string HitText;
 
 
 
@@ -44,11 +46,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        ActionText.text = "Action: jeejee";
         animator = GetComponent<Animator>();
         Sprite = GetComponent<SpriteRenderer>();
         TP = 10;
         momentum = 1.0f;
-        direction = "any";
         if (StartingGuard == 1)
         {
             defensive = true;
@@ -83,19 +85,22 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log(name + " taking hit, guard: " + (offensive ? "Offensive" : "Defensive"));
         if (offensive)
-            animator.SetTrigger("Hit_Offensive");
+            animator.SetInteger("DmgTaken", 1);
         else
-            animator.SetTrigger("Hit_Defensive");
+            animator.SetInteger("DmgTaken", 2);
     }
 
 
     public void ResetForNewTurn()
     {
+        animator = GetComponent<Animator>();
+        Debug.Log(animator);
+        animator.SetInteger("DmgTaken", 0);
         reacting = false;
         isAttack = false;
-        direction = "any";
         damage = 0;
         TP = TP + bonus;
+        ActionText.text = "Action: None";
     }
 
     public void StartCounterMode()
@@ -121,6 +126,7 @@ public class PlayerController : MonoBehaviour
         if (TP < cost)
         {
             Debug.Log("Can't perform action");
+            ActionText.text = "Not enough Tempo, do something else";
         }
         else
         {
@@ -130,6 +136,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        HP = Mathf.Round(HP);
         if (TP > 20)
         {
             TP = 20;
@@ -156,11 +163,18 @@ public class PlayerController : MonoBehaviour
         {
             inputBuffer.Clear();
         }
+        if (!chosen) { 
             // normal combat actions
             if (CheckCombo(thrustCombo)) { PerformThrust(); inputBuffer.Clear(); }
             if (CheckCombo(leftCombo)) { CheckLeft(); inputBuffer.Clear(); }
             if (CheckCombo(rightCombo)) { CheckRight(); inputBuffer.Clear(); }
             if (CheckCombo(braceCombo)) { PerformBrace(); inputBuffer.Clear(); }
+
+            else
+            {
+                //ActionText.text = "Invalid input, try again.";
+            }
+        }
     }
 
     bool CheckCombo(int[] combo)
@@ -184,10 +198,11 @@ public class PlayerController : MonoBehaviour
             damage = 40;
             attackSpeed = 1.0f * momentum;
             isAttack = true;
-            direction = "left";
-            gameController.SubmitAction(this, ActionType.SlashLeft);
             defensive = true;
             offensive = false;
+            chosen = true;
+            ActionText.text = "Action: Slashing (left)";
+            gameController.SubmitAction(this, ActionType.SlashLeft);
         }
         else if (offensive == false)
         {
@@ -195,6 +210,8 @@ public class PlayerController : MonoBehaviour
             offensive = true;
             defensive = false;
             isAttack = false;
+            chosen = true;
+            ActionText.text = "Action: Changing guard";
             gameController.SubmitAction(this, ActionType.None);
         }
     }
@@ -207,10 +224,11 @@ public class PlayerController : MonoBehaviour
             damage = 40;
             attackSpeed = 1.0f * momentum;
             isAttack = true;
-            direction = "right";
-            gameController.SubmitAction(this, ActionType.SlashRight);
             defensive = false;
             offensive = true;
+            chosen = true;
+            ActionText.text = "Action: Slashing (right)";
+            gameController.SubmitAction(this, ActionType.SlashRight);
         }
         else if (defensive == false)
         {
@@ -218,6 +236,8 @@ public class PlayerController : MonoBehaviour
             defensive = true;
             offensive = false;
             isAttack=false;
+            chosen = true;
+            ActionText.text = "Action: Changing guard";
             gameController.SubmitAction(this, ActionType.None);
         }
     }
@@ -225,11 +245,12 @@ public class PlayerController : MonoBehaviour
     {
         TPCheck(5);
         Debug.Log(name + " performs Thrust");
-        gameController.SubmitAction(this, ActionType.Thrust);
-        direction = "any";
         damage = 15;
         attackSpeed = 1.1f * momentum;
         isAttack = true;
+        chosen = true;
+        ActionText.text = "Action: Thrusting";
+        gameController.SubmitAction(this, ActionType.Thrust);
     }
 
     void PerformBrace()
@@ -244,6 +265,8 @@ public class PlayerController : MonoBehaviour
             offensive = false;
             defensive = true;
         }
+        chosen = true;
+        ActionText.text = "Action: Bracing";
         gameController.SubmitAction(this, ActionType.Brace);
     }
 }

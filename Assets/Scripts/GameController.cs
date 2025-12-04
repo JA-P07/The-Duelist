@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 
 public enum ActionType { None, Thrust, SlashLeft, SlashRight, Feint, Brace}
-public enum GameState { WaitingForActions, ResolvingActions, ReactMode, GameOver }
+public enum GameState { Start, WaitingForActions, ResolvingActions, ReactMode, GameOver }
 
 public class GameController : MonoBehaviour
 {
@@ -26,6 +26,10 @@ public class GameController : MonoBehaviour
     public GameObject infoPanel;
     public GameObject PausePanel;
     public GameObject EndPanel;
+    public GameObject GuardPanel;
+    public GameObject PlayersObject;
+    public GameObject TopUI;
+
 
     private ActionType player1Action = ActionType.None;
     private ActionType player2Action = ActionType.None;
@@ -87,11 +91,18 @@ public class GameController : MonoBehaviour
         player2ActionChosen = false;
 
         // Ready to go
-        StartTurn();
+        ChooseGuard();
     }
 
     private void Update()
     {
+        if (player2.ready == true && player1.ready == true)
+        {
+            GuardPanel.SetActive(false);
+            player1.ready = false;
+            player2.ready = false;
+            StartTurn();
+        }
         if (Input.GetKeyDown("i"))
         {
             Info();
@@ -134,6 +145,10 @@ public class GameController : MonoBehaviour
         }
     }
 
+    void ChooseGuard()
+    {
+        GuardPanel.SetActive(true);
+    }
 
     void StartTurn()
     {
@@ -219,9 +234,6 @@ public class GameController : MonoBehaviour
             reactController.StartQTE(1f, 1, reactingPlayer.transform);
         }
     }
-
-
-
 
     void HandleReactComplete(bool success, bool perfect, PlayerController reactingPlayer, PlayerController attackingPlayer)
     {
