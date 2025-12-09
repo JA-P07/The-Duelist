@@ -1011,7 +1011,7 @@ PrefabInstance:
       objectReference: {fileID: 592307197}
     - target: {fileID: 3966488114933976780, guid: 559b50fef247a044bb700bd38979e306, type: 3}
       propertyPath: StartingGuard
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3966488114933976780, guid: 559b50fef247a044bb700bd38979e306, type: 3}
       propertyPath: gameController
@@ -4820,7 +4820,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 2
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5458,7 +5458,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 2
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -6251,6 +6251,10 @@ PrefabInstance:
       propertyPath: ActionText
       value: 
       objectReference: {fileID: 462723844}
+    - target: {fileID: 8763988690180917007, guid: 45dc010ce6f07cb418037c2134f49106, type: 3}
+      propertyPath: StartingGuard
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8763988690180917007, guid: 45dc010ce6f07cb418037c2134f49106, type: 3}
       propertyPath: gameController
       value: 
@@ -8041,7 +8045,7 @@ MonoBehaviour:
   goodWindow: 0.5
   startScale: 4
   endScale: 0.5
-  spawnOffset: {x: 0, y: 2, z: 0}
+  spawnOffset: {x: 0, y: 3, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

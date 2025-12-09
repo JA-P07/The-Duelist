@@ -68,6 +68,8 @@ public class GameController : MonoBehaviour
 
         // Reset match data
         settings.WinningPlayerName = "";
+        player1.StartingGuard = 2;
+        player2.StartingGuard = 2;
         player1Score = 0;
         player2Score = 0;
 
@@ -194,17 +196,36 @@ public class GameController : MonoBehaviour
     void ReactModeCheck()
     {
         // Determine who is attacking faster
-        if (player1.isAttack && (!player2.isAttack || player1.attackSpeed > player2.attackSpeed))
+        if (player1.isAttack && (!player2.isAttack || player1.attackSpeed > player2.attackSpeed && reactController != null))
         {
             EnterReactMode(player2, player1);
         }
-        else if (player2.isAttack && (!player1.isAttack || player2.attackSpeed > player1.attackSpeed))
+        else if (player2.isAttack && (!player1.isAttack || player2.attackSpeed > player1.attackSpeed && reactController != null))
         {
             EnterReactMode(player1, player2);
         }
-        else
+        else if (reactController != null && player1.isAttack && player2.isAttack)
+        {
+            randomizePlayer();
+        }
+        else if (reactController != null && !player1.isAttack && !player2.isAttack)
         {
             ResolveActions();
+        }
+    }
+
+    void randomizePlayer()
+    {
+        System.Random rd = new System.Random();
+        int playerNum = rd.Next(1, 3);
+
+        if (playerNum == 1)
+        {
+            EnterReactMode(player1, player2);
+        }
+        else if (playerNum == 2)
+        {
+            EnterReactMode(player2, player1);
         }
     }
 
@@ -257,7 +278,7 @@ public class GameController : MonoBehaviour
         {
             Debug.Log(reactingPlayer + " makes a counterattack");
             attackingPlayer.damage = 0;
-            reactingPlayer.damage = 30;
+            reactingPlayer.damage = 15;
             ResolveActions();
         }
 

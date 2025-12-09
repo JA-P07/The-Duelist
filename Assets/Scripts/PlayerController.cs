@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        ActionText.text = "Action: jeejee";
+        //ActionText.text = "Action: jeejee";
         animator = GetComponent<Animator>();
         Sprite = GetComponent<SpriteRenderer>();
         TP = 10;
@@ -56,12 +56,31 @@ public class PlayerController : MonoBehaviour
             defensive = true;
             offensive = false;
         }
-        else
+        else if (StartingGuard == 0)
         {
             offensive = true;
             defensive = false;
         }
     }
+
+    public void setGuard()
+    {
+        if (StartingGuard == 1)
+        {
+            offensive = false;
+            defensive = true;
+            StartingGuard = 2;
+            TP = 10;
+        }
+        else if (StartingGuard == 0)
+        {
+            offensive = true;
+            defensive = false;
+            StartingGuard = 2;
+            TP = 10;
+        }
+    }
+
     public void checkGuard()
     {
         if (offensive == true)
@@ -97,8 +116,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log(animator);
         animator.SetInteger("DmgTaken", 0);
         reacting = false;
+        counterMode = false;
+        counterActionChosen = false; 
         isAttack = false;
+        chosen = false;
         damage = 0;
+        inputBuffer.Clear();
+        lastInputTime = 0;
         TP = TP + bonus;
         ActionText.text = "Action: None";
     }
@@ -125,12 +149,14 @@ public class PlayerController : MonoBehaviour
     {
         if (TP < cost)
         {
+            chosen = false;
             Debug.Log("Can't perform action");
             ActionText.text = "Not enough Tempo, do something else";
         }
         else
         {
             TPTransaction(cost);
+            chosen = true;
         }
     }
 
@@ -145,6 +171,7 @@ public class PlayerController : MonoBehaviour
         {
             TP = 0;
         }
+        setGuard();
         checkGuard();
         if (Input.anyKeyDown)
         {
@@ -191,71 +218,78 @@ public class PlayerController : MonoBehaviour
 
     void CheckLeft()
     {
-        if (offensive == true)
+        if (offensive && !defensive)
         {
             TPCheck(8);
+            if (!chosen)
+                return;
             Debug.Log(name + " performs a slash to the left");
-            damage = 40;
+            damage = 20;
             attackSpeed = 1.0f * momentum;
             isAttack = true;
             defensive = true;
             offensive = false;
-            chosen = true;
             ActionText.text = "Action: Slashing (left)";
             gameController.SubmitAction(this, ActionType.SlashLeft);
         }
-        else if (offensive == false)
+        else if (!offensive && defensive)
         {
             TPCheck(0);
+            if (!chosen)
+                return;
             offensive = true;
             defensive = false;
-            isAttack = false;
-            chosen = true;
+            isAttack = false; 
             ActionText.text = "Action: Changing guard";
             gameController.SubmitAction(this, ActionType.None);
         }
     }
     void CheckRight()
     {
-        if (defensive == true)
+        if (defensive && !offensive)
         {
             TPCheck(8);
+            if (!chosen)
+                return;
             Debug.Log(name + " performs a slash to the right");
-            damage = 40;
+            damage = 20;
             attackSpeed = 1.0f * momentum;
             isAttack = true;
             defensive = false;
-            offensive = true;
-            chosen = true;
+            offensive = true; 
             ActionText.text = "Action: Slashing (right)";
             gameController.SubmitAction(this, ActionType.SlashRight);
         }
-        else if (defensive == false)
+        else if (!defensive && offensive)
         {
             TPCheck(0);
+            if (!chosen)
+                return;
             defensive = true;
             offensive = false;
             isAttack=false;
-            chosen = true;
-            ActionText.text = "Action: Changing guard";
-            gameController.SubmitAction(this, ActionType.None);
+                ActionText.text = "Action: Changing guard";
+                gameController.SubmitAction(this, ActionType.None);
         }
     }
     void PerformThrust()
     {
         TPCheck(5);
+        if (!chosen)
+            return;
         Debug.Log(name + " performs Thrust");
-        damage = 15;
+        damage = 8;
         attackSpeed = 1.1f * momentum;
         isAttack = true;
-        chosen = true;
-        ActionText.text = "Action: Thrusting";
-        gameController.SubmitAction(this, ActionType.Thrust);
+            ActionText.text = "Action: Thrusting";
+            gameController.SubmitAction(this, ActionType.Thrust);
     }
 
     void PerformBrace()
     {
         TPCheck(0);
+        if (!chosen)
+            return;
         Debug.Log(name + " gets ready for the incoming attack");
         TP = TP + 2;
         attackSpeed = 0.5f * momentum;
@@ -265,9 +299,8 @@ public class PlayerController : MonoBehaviour
             offensive = false;
             defensive = true;
         }
-        chosen = true;
-        ActionText.text = "Action: Bracing";
-        gameController.SubmitAction(this, ActionType.Brace);
+            ActionText.text = "Action: Bracing";
+            gameController.SubmitAction(this, ActionType.Brace);
     }
 }
 
