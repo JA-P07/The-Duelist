@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
     public GameObject EndPanel;
     public GameObject GuardPanel;
     public GameObject PlayersObject;
-    public GameObject TopUI;
+    public GameObject UI;
 
 
     private ActionType player1Action = ActionType.None;
@@ -103,6 +103,7 @@ public class GameController : MonoBehaviour
             GuardPanel.SetActive(false);
             player1.ready = false;
             player2.ready = false;
+            UI.SetActive(true);
             StartTurn();
         }
         if (Input.GetKeyDown("i"))
@@ -123,7 +124,7 @@ public class GameController : MonoBehaviour
             pause = false;
             Time.timeScale = 1;
         }
-        else
+        else if (!info)
         {
             Time.timeScale = 0;
             pause = true;
@@ -138,17 +139,20 @@ public class GameController : MonoBehaviour
             infoPanel.SetActive(false);
             info = false;
             Time.timeScale = 1;
+            UI.SetActive(true);
         }
-        else
+        else if (!pause)
         {
             Time.timeScale = 0;
             info = true;
             infoPanel.SetActive(true);
+            UI.SetActive(false);
         }
     }
 
     void ChooseGuard()
     {
+        UI.SetActive(false);
         GuardPanel.SetActive(true);
     }
 
@@ -196,11 +200,13 @@ public class GameController : MonoBehaviour
     void ReactModeCheck()
     {
         // Determine who is attacking faster
-        if (player1.isAttack && (!player2.isAttack || player1.attackSpeed > player2.attackSpeed && reactController != null))
+        if (player1.isAttack && !player2.isAttack && reactController != null ||
+            player1.isAttack && player2.isAttack && player1.attackSpeed > player2.attackSpeed && reactController != null)
         {
             EnterReactMode(player2, player1);
         }
-        else if (player2.isAttack && (!player1.isAttack || player2.attackSpeed > player1.attackSpeed && reactController != null))
+        else if (player2.isAttack && !player1.isAttack && reactController != null ||
+                 player2.isAttack && player1.isAttack && player2.attackSpeed > player1.attackSpeed && reactController != null)
         {
             EnterReactMode(player1, player2);
         }

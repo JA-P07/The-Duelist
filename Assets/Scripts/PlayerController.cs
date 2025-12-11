@@ -186,10 +186,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Time.time - lastInputTime > comboMaxTime)
+        if (!chosen && Time.time - lastInputTime > comboMaxTime)
         {
             inputBuffer.Clear();
         }
+
         if (!chosen) { 
             // normal combat actions
             if (CheckCombo(thrustCombo)) { PerformThrust(); inputBuffer.Clear(); }
