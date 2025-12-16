@@ -404,6 +404,7 @@ public class GameController : MonoBehaviour
             }
         }
         EndPanel.SetActive(true);
+        UI.SetActive(false);
     }
 
 }

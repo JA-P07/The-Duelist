@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|c:\\users\\julius.palttala\\documents\\git\\the-duelist\\the duelist\\assets\\scripts\\endcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\endcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\assets\\scripts\\pausecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\pausecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|c:\\users\\julius.palttala\\documents\\git\\the-duelist\\the duelist\\assets\\scripts\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\assets\\scripts\\guardpanelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\guardpanelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\assets\\scripts\\pausecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\pausecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ED794074-47A3-1EB5-A40D-C86EA575B3C1}|Assembly-CSharp.csproj|C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\assets\\scripts\\gamesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +46,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "EndController.cs",
+              "DocumentMoniker": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\EndController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\EndController.cs",
+              "ToolTip": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\EndController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\EndController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T13:47:54.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "GuardPanelController.cs",
               "DocumentMoniker": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\GuardPanelController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GuardPanelController.cs",
@@ -58,7 +75,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "PauseController.cs",
               "DocumentMoniker": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\PauseController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PauseController.cs",
@@ -66,11 +83,12 @@
               "RelativeToolTip": "Assets\\Scripts\\PauseController.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAuwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T10:41:31.532Z"
+              "WhenOpened": "2025-11-27T10:41:31.532Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "GameSettings.cs",
               "DocumentMoniker": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\GameSettings.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameSettings.cs",
@@ -82,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "MainMenuController.cs",
               "DocumentMoniker": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\MainMenuController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenuController.cs",
@@ -94,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "HealthBar.cs",
               "DocumentMoniker": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\HealthBar.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\HealthBar.cs",
@@ -106,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "SimpleReactController.cs",
               "DocumentMoniker": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\SimpleReactController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SimpleReactController.cs",
@@ -118,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "GameController.cs",
               "DocumentMoniker": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\GameController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameController.cs",
@@ -131,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Users\\julius.palttala\\Documents\\git\\The-Duelist\\The Duelist\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
